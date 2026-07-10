@@ -9,9 +9,9 @@ function ProjectCard({ project }) {
       {/* Terminal-style header - a nod to how an engineer would actually
           reference these projects day to day (a path, not a poster) */}
       <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-100 dark:border-white/10 bg-slate-50 dark:bg-white/5">
-        <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
-        <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
         <span className="h-2.5 w-2.5 rounded-full bg-signal/70" />
+        <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
+        <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
         <span className="ml-2 font-mono text-xs text-slate-500 dark:text-slate-400">
           ~/projects/{slug}
         </span>
