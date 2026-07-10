@@ -1,0 +1,63 @@
+# Serverless Framework config - deploys server/lambda.js as a single AWS
+# Lambda function sitting behind an HTTP API (API Gateway v2).
+#
+# Prerequisites:
+#   1. An AWS account with credentials configured locally (`aws configure`,
+#      or any of the other methods the AWS CLI supports).
+#   2. A MongoDB Atlas cluster (or any internet-reachable MongoDB) - Lambda
+#      functions are stateless and short-lived, so a MongoDB running on
+#      your own laptop is not reachable from AWS. See README section 6.
+#   3. `server/.env` filled in with your real MONGO_URI and CLIENT_URL -
+#      the serverless-dotenv-plugin below loads this file automatically so
+#      the ${env:...} references work at deploy time.
+#
+# Usage (all run from the server/ folder):
+#   npx serverless deploy              # deploy (or update) to the "dev" stage
+#   npx serverless deploy --stage prod # deploy a separate "prod" stage
+#   npx serverless offline             # emulate API Gateway + Lambda locally
+#   npx serverless remove              # tear down all AWS resources created
+
+service: resume-website-api
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-dotenv-plugin # loads server/.env so ${env:VAR} below works
+  - serverless-offline       # lets `serverless offline` emulate this locally
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    MONGO_URI: ${env:MONGO_URI}
+    CLIENT_URL: ${env:CLIENT_URL}
+    JWT_SECRET: ${env:JWT_SECRET}
+    ADMIN_USERNAME: ${env:ADMIN_USERNAME}
+    ADMIN_PASSWORD_HASH: ${env:ADMIN_PASSWORD_HASH}
+    EMAIL_USER: ${env:EMAIL_USER, ''}
+    EMAIL_PASS: ${env:EMAIL_PASS, ''}
+    EMAIL_TO: ${env:EMAIL_TO, ''}
+    EMAIL_FROM_NAME: ${env:EMAIL_FROM_NAME, ''}
+  # This API only talks to MongoDB Atlas over the public internet and
+  # returns JSON - it doesn't need permissions to touch any other AWS
+  # resource, so we deliberately leave iam.role unset and let Serverless
+  # create a minimal default execution role (CloudWatch Logs only).
+
+functions:
+  api:
+    handler: lambda.handler
+    memorySize: 256
+    timeout: 15 # comfortably under API Gateway's own 29s hard limit
+    events:
+      # A single catch-all route: every method and path is forwarded to
+      # this one Lambda, and Express (see app.js) handles routing from
+      # there - identical to how requests are routed locally.
+      - httpApi: '*'
+
+# NOTE ON SECRETS: MONGO_URI ends up in this stack's Lambda configuration
+# as a plain environment variable, which is fine for a learning project but
+# not ideal for a real production secret. Before using this with a real
+# production database, consider storing MONGO_URI in AWS Secrets Manager or
+# SSM Parameter Store and having lambda.js fetch it at cold start instead.
