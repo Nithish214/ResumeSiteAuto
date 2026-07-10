@@ -123,10 +123,10 @@ export default function Hero() {
         >
           <div className="flex items-center justify-between mb-6">
           
-            <span className="flex items-center gap-1.5 font-mono text-xs text-amber-dark dark:text-signal">
+            <span className="flex items-center gap-1.5 font-mono text-xs text-amber-dark dark:text-amber">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-signal opacity-75 animate-pulseRing" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-dark dark:bg-signal" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-amber opacity-75 animate-pulseRing" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-dark dark:bg-amber" />
               </span>
               inprogress
             </span>
