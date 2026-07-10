@@ -6,7 +6,7 @@ export default function About() {
     <section id="about" className="px-6 sm:px-8 py-20 sm:py-28">
       <Reveal className="max-w-6xl mx-auto grid md:grid-cols-[0.6fr_1fr] gap-10 md:gap-16 items-start">
         <div>
-          <p className="section-eyebrow">// About</p>
+          {/* <p className="section-eyebrow">// About</p> */}
           <h2 className="section-heading">Profile</h2>
         </div>
 
