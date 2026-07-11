@@ -10,8 +10,8 @@ export default function Footer() {
           © {year} {profile.name}. Built with the MERN stack.
         </p>
         <p className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-signal-dark dark:bg-signal" />
-          all systems operational
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-dark dark:bg-amber" />
+         
         </p>
       </div>
     </footer>
