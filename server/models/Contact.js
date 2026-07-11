@@ -57,6 +57,17 @@ const contactSchema = new mongoose.Schema({
     maxlength: [100, "Preferred callback time must be under 100 characters"],
     default: "",
   },
+  // Which resume the recruiter was viewing when they submitted - "sre" for
+  // the default site, "java" for the /java version (see
+  // client/src/context/SiteDataContext.jsx). Not a strict enum on purpose,
+  // so adding a third resume variant later doesn't require a schema change
+  // here too.
+  site: {
+    type: String,
+    trim: true,
+    default: "sre",
+    maxlength: [30, "Site tag must be under 30 characters"],
+  },
   createdAt: {
     type: Date,
     default: Date.now,

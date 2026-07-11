@@ -30,11 +30,16 @@ export const submitContact = async (formData) => {
  * Fetches recruiter contact submissions - used by the admin dashboard.
  * @param {string} token - the admin's JWT (see context/AuthContext.jsx)
  * @param {string} [search] - optional text to filter by name/company/email/role
+ * @param {string} [site] - optional exact-match filter, e.g. "sre" or "java"
  */
-export const fetchContacts = async (token, search = "") => {
+export const fetchContacts = async (token, search = "", site = "") => {
+  const params = {};
+  if (search) params.search = search;
+  if (site) params.site = site;
+
   const response = await api.get("/contacts", {
     ...authHeader(token),
-    params: search ? { search } : {},
+    params,
   });
   return response.data;
 };

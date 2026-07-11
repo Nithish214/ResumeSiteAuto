@@ -20,6 +20,7 @@ export const createContact = async (req, res, next) => {
       jobTitle,
       message,
       preferredCallbackTime,
+      site,
     } = req.body;
 
     const contact = await Contact.create({
@@ -30,6 +31,7 @@ export const createContact = async (req, res, next) => {
       jobTitle,
       message,
       preferredCallbackTime,
+      site,
     });
 
     // Await this (rather than fire-and-forget) since Lambda can freeze
@@ -52,12 +54,14 @@ export const createContact = async (req, res, next) => {
  * @route   GET /api/contacts
  * @desc    List recruiter contact submissions, most recent first. Supports
  *          an optional ?search= query param that matches against recruiter
- *          name, company, work email, or job title (case-insensitive).
+ *          name, company, work email, or job title (case-insensitive), and
+ *          an optional ?site= param to filter to one resume version's
+ *          submissions only (e.g. "sre" or "java").
  * @access  Admin only - protected by verifyToken (see routes/contactRoutes.js)
  */
 export const getContacts = async (req, res, next) => {
   try {
-    const { search } = req.query;
+    const { search, site } = req.query;
     let query = {};
 
     if (search && search.trim()) {
@@ -67,14 +71,16 @@ export const getContacts = async (req, res, next) => {
       const escaped = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       const regex = new RegExp(escaped, "i");
 
-      query = {
-        $or: [
-          { recruiterName: regex },
-          { companyName: regex },
-          { workEmail: regex },
-          { jobTitle: regex },
-        ],
-      };
+      query.$or = [
+        { recruiterName: regex },
+        { companyName: regex },
+        { workEmail: regex },
+        { jobTitle: regex },
+      ];
+    }
+
+    if (site && site.trim()) {
+      query.site = site.trim();
     }
 
     const contacts = await Contact.find(query).sort({ createdAt: -1 });

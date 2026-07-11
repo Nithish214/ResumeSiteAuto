@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 import Reveal from "./Reveal.jsx";
+import { useSiteData } from "../context/SiteDataContext.jsx";
 import { submitContact } from "../services/api.js";
 
 const INITIAL_FORM = {
@@ -87,6 +88,7 @@ const inputClasses = (hasError) =>
    }`;
 
 export default function Contact() {
+  const { siteId } = useSiteData();
   const [values, setValues] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
@@ -114,7 +116,7 @@ export default function Contact() {
     setServerMessage("");
 
     try {
-      const result = await submitContact(values);
+      const result = await submitContact({ ...values, site: siteId });
       setStatus("success");
       setServerMessage(result.message || "Thanks - I'll be in touch soon.");
       setValues(INITIAL_FORM);
@@ -140,6 +142,7 @@ export default function Contact() {
     <section id="contact" className="px-6 sm:px-8 py-20 sm:py-28">
       <div className="max-w-4xl mx-auto">
         <Reveal className="mb-10 text-center sm:text-left">
+          <p className="section-eyebrow">// Get in touch</p>
           <h2 className="section-heading">
             Hiring or recruiting? Leave your details and I'll get back to you.
           </h2>

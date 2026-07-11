@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Mail, Phone, ArrowRight, Download } from "lucide-react";
-import { profile, stats } from "../data/resumeData.js";
+import { useSiteData } from "../context/SiteDataContext.jsx";
 
 // Hero animates on page load (not on scroll-into-view like the rest of the
 // site's sections) since it's the first thing visible - staggerChildren
@@ -20,6 +20,8 @@ const item = {
 };
 
 export default function Hero() {
+  const { profile, stats } = useSiteData();
+
   return (
     <section
       id="top"
@@ -40,7 +42,10 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-16 items-center">
         {/* Left column: identity + CTAs */}
         <motion.div variants={container} initial="hidden" animate="visible">
-         
+          <motion.p variants={item} className="section-eyebrow">
+            Cloud Ops // SRE Engineer
+          </motion.p>
+
           <motion.h1
             variants={item}
             className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08] font-extrabold mt-3 text-graphite dark:text-white"
@@ -122,13 +127,15 @@ export default function Hero() {
           className="card p-6 sm:p-7 relative"
         >
           <div className="flex items-center justify-between mb-6">
-          
-            <span className="flex items-center gap-1.5 font-mono text-xs text-amber-dark dark:text-amber">
+            <span className="font-mono text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400">
+              engineer_status.json
+            </span>
+            <span className="flex items-center gap-1.5 font-mono text-xs text-signal-dark dark:text-signal">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-amber opacity-75 animate-pulseRing" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-dark dark:bg-amber" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-signal opacity-75 animate-pulseRing" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-dark dark:bg-signal" />
               </span>
-              inprogress
+              available
             </span>
           </div>
 
@@ -148,10 +155,10 @@ export default function Hero() {
             ))}
           </dl>
 
-          {/* <div className="mt-6 pt-5 border-t border-slate-100 dark:border-white/10 font-mono text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
+          <div className="mt-6 pt-5 border-t border-slate-100 dark:border-white/10 font-mono text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
             <span>role: cloud_ops / sre</span>
             <span>region: eu-west-1 (dublin)</span>
-          </div> */}
+          </div>
         </motion.div>
       </div>
     </section>

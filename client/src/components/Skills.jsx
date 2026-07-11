@@ -9,7 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import Reveal from "./Reveal.jsx";
-import { skillGroups } from "../data/resumeData.js";
+import { useSiteData } from "../context/SiteDataContext.jsx";
 
 // Maps each skill group title to an icon that reflects its subject matter
 const ICONS = {
@@ -49,11 +49,13 @@ function SkillCard({ group }) {
 }
 
 export default function Skills() {
+  const { skillGroups } = useSiteData();
+
   return (
     <section id="skills" className="px-6 sm:px-8 py-20 sm:py-28">
       <div className="max-w-6xl mx-auto">
         <Reveal className="mb-14 max-w-2xl">
-          {/* <p className="section-eyebrow">// Capabilities</p> */}
+          <p className="section-eyebrow">// Capabilities</p>
           <h2 className="section-heading">Skills by domain</h2>
           <p className="text-slate-600 dark:text-slate-400">
             Grouped the way I actually use them - operating systems day to day,

@@ -19,7 +19,7 @@ export const profile = {
 
 export const stats = [
   { label: "Years Experience", value: "3+" },
-  { label: "Production APIs Shipped", value: "17+" },
+  { label: "Production APIs Shipped", value: "15+" },
   { label: "Latency Reduced", value: "25%" },
   { label: "MTTR / Manual Effort Cut", value: "35%" },
 ];

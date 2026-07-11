@@ -1,5 +1,5 @@
 import Reveal from "./Reveal.jsx";
-import { experience } from "../data/resumeData.js";
+import { useSiteData } from "../context/SiteDataContext.jsx";
 
 function ExperienceCard({ job }) {
   return (
@@ -57,11 +57,13 @@ function ExperienceCard({ job }) {
 }
 
 export default function Experience() {
+  const { experience } = useSiteData();
+
   return (
     <section id="experience" className="px-6 sm:px-8 py-20 sm:py-28 bg-slate-50/60 dark:bg-surface/30">
       <div className="max-w-6xl mx-auto">
         <Reveal className="mb-14">
-          {/* <p className="section-eyebrow">// Experience log</p> */}
+          <p className="section-eyebrow">// Experience log</p>
           <h2 className="section-heading">Where I've operated</h2>
         </Reveal>
 

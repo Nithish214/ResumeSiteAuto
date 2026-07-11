@@ -1,13 +1,16 @@
 import { GraduationCap, BadgeCheck } from "lucide-react";
 import Reveal from "./Reveal.jsx";
-import { education, certifications } from "../data/resumeData.js";
+import { useSiteData } from "../context/SiteDataContext.jsx";
 
 export default function Education() {
+  const { education, certifications } = useSiteData();
+
   return (
     <section id="education" className="px-6 sm:px-8 py-20 sm:py-28">
       <div className="max-w-6xl mx-auto">
         <Reveal className="mb-14">
-            <h2 className="section-heading">Foundation</h2>
+          <p className="section-eyebrow">// Education & credentials</p>
+          <h2 className="section-heading">Foundation</h2>
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-10">

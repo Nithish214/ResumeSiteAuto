@@ -56,6 +56,12 @@ export const contactValidationRules = [
     .trim()
     .isLength({ max: 100 })
     .withMessage("Preferred callback time must be under 100 characters"),
+
+  body("site")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ max: 30 })
+    .withMessage("Site tag must be under 30 characters"),
 ];
 
 /**
