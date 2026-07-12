@@ -18,12 +18,12 @@ export default function Footer() {
         <p>
           © {year} {profile.name}. Built with the MERN stack.
         </p>
-        <Link
+        {/* <Link
           to={otherResume.to}
           className="hover:text-signal-dark dark:hover:text-signal transition-colors"
         >
           {otherResume.label}
-        </Link>
+        </Link> */}
       </div>
     </footer>
   );
