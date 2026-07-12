@@ -142,7 +142,6 @@ export default function Contact() {
     <section id="contact" className="px-6 sm:px-8 py-20 sm:py-28">
       <div className="max-w-4xl mx-auto">
         <Reveal className="mb-10 text-center sm:text-left">
-          <p className="section-eyebrow">// Get in touch</p>
           <h2 className="section-heading">
             Hiring or recruiting? Leave your details and I'll get back to you.
           </h2>

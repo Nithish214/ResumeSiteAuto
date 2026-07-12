@@ -7,10 +7,10 @@ export default function Footer() {
 
   // Lets a recruiter who landed on one version discover the other -
   // "sre" links to the Java-focused resume and vice versa.
-  const otherResume =
-    siteId === "java"
-      ? { to: "/", label: "Viewing Java resume — see Cloud Ops/SRE resume instead" }
-      : { to: "/java", label: "Viewing Cloud Ops/SRE resume — see Java resume instead" };
+  // const otherResume =
+  //   siteId === "java"
+  //     ? { to: "/", label: "Viewing Java resume — see Cloud Ops/SRE resume instead" }
+  //     : { to: "/java", label: "Viewing Cloud Ops/SRE resume — see Java resume instead" };
 
   return (
     <footer className="px-6 sm:px-8 py-10 border-t border-slate-200 dark:border-white/10">
@@ -24,10 +24,6 @@ export default function Footer() {
         >
           {otherResume.label}
         </Link>
-        <p className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-signal-dark dark:bg-signal" />
-          all systems operational
-        </p>
       </div>
     </footer>
   );

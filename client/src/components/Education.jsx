@@ -9,7 +9,6 @@ export default function Education() {
     <section id="education" className="px-6 sm:px-8 py-20 sm:py-28">
       <div className="max-w-6xl mx-auto">
         <Reveal className="mb-14">
-          <p className="section-eyebrow">// Education & credentials</p>
           <h2 className="section-heading">Foundation</h2>
         </Reveal>
 

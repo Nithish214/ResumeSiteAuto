@@ -42,9 +42,7 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-16 items-center">
         {/* Left column: identity + CTAs */}
         <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.p variants={item} className="section-eyebrow">
-            Cloud Ops // SRE Engineer
-          </motion.p>
+       
 
           <motion.h1
             variants={item}
@@ -132,10 +130,10 @@ export default function Hero() {
             </span>
             <span className="flex items-center gap-1.5 font-mono text-xs text-signal-dark dark:text-signal">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-signal opacity-75 animate-pulseRing" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-dark dark:bg-signal" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-amber opacity-75 animate-pulseRing" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-dark dark:bg-amber" />
               </span>
-              available
+              In-progress
             </span>
           </div>
 
