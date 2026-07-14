@@ -339,9 +339,15 @@ function Dashboard() {
             onChange={(e) => setSiteFilter(e.target.value)}
             className="rounded-lg border border-slate-200 dark:border-white/10 bg-paperCard dark:bg-white/5 px-4 py-2.5 text-sm text-graphite dark:text-white focus:outline-none focus:ring-2 focus:ring-signal/50 focus:border-signal"
           >
-            <option value="">All resumes</option>
-            <option value="sre">Cloud Ops / SRE resume</option>
-            <option value="java">Java resume</option>
+          <option value="" className="bg-paperCard dark:bg-surface text-graphite dark:text-white">
+            All resumes
+          </option>
+          <option value="sre" className="bg-paperCard dark:bg-surface text-graphite dark:text-white">
+            Cloud Ops / SRE resume
+          </option>
+          <option value="java" className="bg-paperCard dark:bg-surface text-graphite dark:text-white">
+            Java resume
+          </option>
           </select>
         </div>
 
