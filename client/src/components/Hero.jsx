@@ -95,7 +95,7 @@ export default function Hero() {
               href="#projects"
               className="btn-primary"
             >
-              View Projects <ArrowRight size={16} />
+               Projects <ArrowRight size={16} />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.03 }}
