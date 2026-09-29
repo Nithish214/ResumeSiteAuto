@@ -9,13 +9,17 @@
     />
     <title>Nithish Kumar | Cloud Operations & SRE Engineer</title>
 
-    <!-- Preconnect + fonts: Sora (display), Inter (body), JetBrains Mono (data/labels) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <!--
+      Fonts: Sora (display), Inter (body), JetBrains Mono (data/labels) -
+      self-hosted from public/fonts/ (see src/index.css for the @font-face
+      rules) instead of fonts.googleapis.com, which used to block first
+      paint on two extra cross-origin round trips before any text could
+      render. Preloading the two used above the fold (headline + body text)
+      gets them requested immediately instead of waiting on CSS parsing to
+      discover them.
+    -->
+    <link rel="preload" href="/fonts/Sora-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!--
       Inline script: applies the saved theme (or system preference) BEFORE

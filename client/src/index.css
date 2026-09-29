@@ -2,6 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Self-hosted fonts - see public/fonts/. Previously loaded from
+ * fonts.googleapis.com, which blocked first paint on 2 extra round trips
+ * (DNS+TLS to fonts.googleapis.com, then again to fonts.gstatic.com) before
+ * any text could render. Serving them from the same origin as everything
+ * else removes that chain entirely.
+ *
+ * Each file is the variable-weight version of the font, so one file covers
+ * every weight the site uses (font-weight: 100 900 tells the browser it can
+ * pick any weight in that range from this single file) - that's also why
+ * three files replace what used to be ten+ separate static-weight downloads.
+ */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter-Variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Sora";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Sora-Variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/JetBrainsMono-Variable.woff2") format("woff2");
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
