@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import Contact from "./models/Contact.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 
 /**
@@ -58,6 +59,18 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.json({ message: "Resume website API is running" });
+});
+
+// Runs a real query so hitting this counts as database activity (used by the
+// weekly keep-alive workflow to stop Atlas pausing an idle free-tier cluster).
+// Returns 500 via the error handler if the database is unreachable.
+app.get("/health", async (req, res, next) => {
+  try {
+    await Contact.countDocuments();
+    res.json({ status: "ok" });
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Everything under /api/contacts is handled by routes/contactRoutes.js

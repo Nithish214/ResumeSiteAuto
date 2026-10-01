@@ -1,7 +1,7 @@
 name: Keep MongoDB Atlas Awake
 
-# Atlas pauses idle free-tier clusters. The Lambda opens a MongoDB connection
-# on every request (see server/lambda.js), so a weekly ping counts as activity.
+# Atlas pauses idle free-tier clusters. GET /health (see server/app.js) runs a
+# real query against MongoDB, so a weekly ping counts as database activity.
 # -f makes curl fail on HTTP errors, so if the DB is down (Lambda returns 500)
 # this workflow fails and GitHub emails you.
 
@@ -19,4 +19,4 @@ jobs:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: |
           # VITE_API_URL ends in /api; the health route lives at the API root
-          curl -fsS --retry 3 --retry-delay 10 "${VITE_API_URL%/api}/"
+          curl -fsS --retry 3 --retry-delay 10 "${VITE_API_URL%/api}/health"
