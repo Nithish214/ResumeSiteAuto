@@ -40,6 +40,8 @@ provider:
     EMAIL_PASS: ${env:EMAIL_PASS, ''}
     EMAIL_TO: ${env:EMAIL_TO, ''}
     EMAIL_FROM_NAME: ${env:EMAIL_FROM_NAME, ''}
+    SPOTIFY_CLIENT_ID: ${env:SPOTIFY_CLIENT_ID, ''}
+    SPOTIFY_CLIENT_SECRET: ${env:SPOTIFY_CLIENT_SECRET, ''}
   # This API only talks to MongoDB Atlas over the public internet and
   # returns JSON - it doesn't need permissions to touch any other AWS
   # resource, so we deliberately leave iam.role unset and let Serverless

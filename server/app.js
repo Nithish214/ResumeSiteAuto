@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import spotifyRoutes from "./routes/spotifyRoutes.js";
 import Contact from "./models/Contact.js";
 import { errorHandler, notFound } from "./middleware/errorHandler.js";
 
@@ -78,6 +79,11 @@ app.use("/api/contacts", contactRoutes);
 
 // POST /api/auth/login - admin login, issues a JWT
 app.use("/api/auth", authRoutes);
+
+// GET /api/spotify/search - track search for the "pick a song" widget.
+// Uses app-level Spotify credentials (see utils/spotifyAuth.js) - visitors
+// never log into Spotify themselves.
+app.use("/api/spotify", spotifyRoutes);
 
 // --- Error handling (must be registered last) --------------------------
 

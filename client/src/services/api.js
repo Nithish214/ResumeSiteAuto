@@ -56,6 +56,17 @@ export const deleteContact = async (id, token) => {
 };
 
 /**
+ * Searches Spotify's public catalog for tracks - powers the music picker
+ * (see components/MusicPicker.jsx). The server holds the Spotify
+ * credentials; the browser never talks to Spotify's API directly.
+ * @param {string} query - search text, e.g. a song or artist name
+ */
+export const searchSpotifyTracks = async (query) => {
+  const response = await api.get("/spotify/search", { params: { q: query } });
+  return response.data;
+};
+
+/**
  * Logs in as admin. On success, returns { success, token } - the token
  * gets stored via AuthContext.login().
  * @param {string} username

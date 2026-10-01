@@ -5,6 +5,7 @@ import Experience from "../components/Experience.jsx";
 import Skills from "../components/Skills.jsx";
 import Projects from "../components/Projects.jsx";
 import Education from "../components/Education.jsx";
+import MusicPicker from "../components/MusicPicker.jsx";
 import Contact from "../components/Contact.jsx";
 import Footer from "../components/Footer.jsx";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Education />
+        <MusicPicker />
         <Contact />
       </main>
       <Footer />
