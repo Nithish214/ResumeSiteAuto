@@ -12,9 +12,9 @@ function ProjectCard({ project }) {
         <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
         <span className="h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-white/20" />
         <span className="h-2.5 w-2.5 rounded-full bg-signal/70" />
-        <span className="ml-2 font-mono text-xs text-slate-500 dark:text-slate-400">
+        {/* <span className="ml-2 font-mono text-xs text-slate-500 dark:text-slate-400">
           ~/projects/{slug}
-        </span>
+        </span> */}
       </div>
 
       <div className="p-6 sm:p-7">

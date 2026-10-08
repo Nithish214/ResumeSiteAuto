@@ -98,7 +98,6 @@ export default function MusicPicker() {
     <section id="music" className="px-6 sm:px-8 py-20 sm:py-28 bg-slate-50/60 dark:bg-surface/30">
       <div className="max-w-3xl mx-auto">
         <Reveal className="mb-10">
-          <p className="section-eyebrow">// Soundtrack</p>
           <h2 className="section-heading">Pick what plays while you read</h2>
           <p className="text-slate-600 dark:text-slate-400">
             Search any track and it'll play right here - no Spotify account
