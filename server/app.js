@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
 import contactRoutes from "./routes/contactRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import spotifyRoutes from "./routes/spotifyRoutes.js";
@@ -67,8 +68,17 @@ app.get("/", (req, res) => {
 // Returns 500 via the error handler if the database is unreachable.
 app.get("/health", async (req, res, next) => {
   try {
-    await Contact.countDocuments();
-    res.json({ status: "ok" });
+    const contactCount = await Contact.countDocuments();
+    res.json({
+      status: "ok",
+      // Which database MONGO_URI actually resolved to, and how many contact
+      // documents are visible there - surfaces a silent "wrong database"
+      // misconfiguration (e.g. MONGO_URI missing a /dbname path falls back
+      // to MongoDB's default "test" database) that would otherwise look
+      // identical to a healthy connection.
+      database: mongoose.connection.name,
+      contactCount,
+    });
   } catch (error) {
     next(error);
   }
